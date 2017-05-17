@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class fadeOutOnClick : MonoBehaviour {
-    public Texture2D txt2d;
+    private Texture2D txt2d;
+	public string toScene="";
     public int frames = 111;
     bool click = false;
     bool change = false;
@@ -22,7 +23,7 @@ public class fadeOutOnClick : MonoBehaviour {
     }
     void Update()
     {
-        if(change) SceneManager.LoadScene("tbl");
+        if(change) SceneManager.LoadScene(toScene);
     }
     void OnGUI()
     {
@@ -34,7 +35,7 @@ public class fadeOutOnClick : MonoBehaviour {
             GUI.color = c;
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), txt2d);
             if (alpha >= 1) change = true;
-            alpha += 1.0f/frames;
+            else alpha += 1.0f/frames;
         }
     }
 }
